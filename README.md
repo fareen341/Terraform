@@ -121,3 +121,13 @@ Terraform official documentation have given the examples
 In the example if we have given 100 machines to create then it'd be creating 100 machines in the same amount of time which it takes to create one, it'll take few seconds only.
 
 </pre>
+
+<h3>Extra</h3>
+<pre>
+1)Used for creating infrastructure.
+2)Terraform can decide how many no. of servers needed and how many can be reduced thus reducing the business costs.
+3)It can create the entire infrastructure in hours/minutes.
+4)Usefull for managing infrastructure.
+5)It compares the new infrastructure with the existing infrastructure and decide how many servers need etc.
+</pre>
+
