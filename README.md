@@ -139,6 +139,13 @@ We need to download according to providers, eg: AWS, Bitbucket, DataDog, Ks8 etc
 
 It'll decide which platform to use based on the provider we've given.
 
+<b>Plan:</b> it just compare the current infra with the .tf file, and if no changes the will return
+Terraform has compared your real infrastructure against your configuration and found no differences, so no changes are needed.
+
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
 <h3>Create</h3>
 Example:
 
