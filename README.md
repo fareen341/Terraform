@@ -131,3 +131,95 @@ In the example if we have given 100 machines to create then it'd be creating 100
 5)It compares the new infrastructure with the existing infrastructure and decide how many servers need etc.
 </pre>
 
+<hr>
+
+<h1>Intro</h1>
+<pre>
+We need to download according to providers, eg: AWS, Bitbucket, DataDog, Ks8 etc is a provider
+
+It'll decide which platform to use based on the provider we've given.
+
+<h3>Create</h3>
+Example:
+
+provider "aws"{
+	region: ap-south-1
+	access_key = ""
+	secret_key = ""
+}
+
+resource "aws_instance" "demo-instance" {
+	ami= "ami-id"
+	instance_type= "t2.micro"
+}
+
+
+To run above example we need to do below 3 steps:
+
+1. this will initialize the provider automatically based on the provider given
+$ terraform init
+
+2. plan: here '+' means create resource, '~' means changes done and '-' means delete a resource.
+$ terraform plan
+
+3. apply: will check and apply
+$ terraform apply
+
+Result: Apply completed! Resources: 1 added, 0 changes, 0 destroyed
+
+
+<h3>Modifying</h3>
+We have'nt done any changes, if we again do <b>$ terraform apply </b>, it'll check the current infracture and compare the 
+infracture with our current file whichever we have given, if terraform code matches with infra it'll give output 
+<b>No changes. Infrasture is up-to-date</b>
+
+So if we do <b>$ terraform apply</b>, it'll again refresh the state. Talk to aws resource and return:
+<b>Apply complete! Resource: 0 added, 0 changed, 0 destroyed</b>
+
+Example: 
+Now make changes in the current code and add tag:
+
+provider "aws"{
+	region: ap-south-1
+	access_key = ""
+	secret_key = ""
+}
+
+resource "aws_instance" "demo-instance" {
+	ami= "ami-id"
+	instance_type= "t2.micro"
+	tag = {
+	     Name = "Demo-Server"
+	}
+}
+
+$ terraform init
+$ terraform apply
+Now, whatever we've changed terraform will show that changes in ~, means whatever is showing after tilda that is changes
+
+It won't launch the instance again, it'll go and check that matching instance and update the tag only.
+
+<h3>Delete</h3>
+
+$ terraform destroy
+
+1. Will delete everything which is showing in '-'
+2. By default terraform will destroy everything which is created by it.
+3. If we want to delete only some resource we need to send some parameters.
+
+Another way to delete a specific resource is to remove the code from your terraform file and apply will remove that resource.
+
+
+<h3>Extra</h3>
+1. If we want to auto approve instead to typing yes again and again just use below cmd:
+$ terraform apply --auto-approve
+
+2. If we've written subnet resource first and then vpc resource, terraform is smart enough to create vpc first then subnet.
+Another example is if created custom-ami first and then launch ec2, terraform will launch ec2 first then create ami.
+
+
+Terraform files:
+To be continue...
+</pre>
+
+
