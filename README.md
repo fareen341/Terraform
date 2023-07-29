@@ -234,7 +234,7 @@ provider "aws" {
   secret_key = ""
 }
 
-# Create a VPC
+#Create a VPC
 resource "aws_vpc" "my_vpc" {
   cidr_block = "192.168.0.0/32"  # Replace with your desired VPC CIDR block
   tags = {
@@ -242,7 +242,7 @@ resource "aws_vpc" "my_vpc" {
   }
 }
 
-# Create a public subnet
+#Create a public subnet
 resource "aws_subnet" "public_subnet" {
   vpc_id     = aws_vpc.my_vpc.id
   cidr_block = "192.168.1.0/32"  # Replace with your desired public subnet CIDR block
