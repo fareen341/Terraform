@@ -262,7 +262,7 @@ provider "aws" {
 resource "aws_instance" "web_server" {
   ami           = "ami-0c55b159cbfafe1f0"
   instance_type = "t2.micro"
-  # other instance configurations...
+  #other instance configurations...
 
   provisioner "remote-exec" {
     inline = [
