@@ -225,8 +225,65 @@ $ terraform apply --auto-approve
 Another example is if created custom-ami first and then launch ec2, terraform will launch ec2 first then create ami.
 
 
-Terraform files:
-To be continue...
+<h3>PROJECT:</h3>
+Create a custom VPC using terraform: 
+
+provider "aws" {
+  region = "ap-south-1"  # Replace with your desired region
+  access_key = ""
+  secret_key = ""
+}
+
+# Create a VPC
+resource "aws_vpc" "my_vpc" {
+  cidr_block = "192.168.0.0/32"  # Replace with your desired VPC CIDR block
+  tags = {
+    Name = "CustomVPC"
+  }
+}
+
+# Create a public subnet
+resource "aws_subnet" "public_subnet" {
+  vpc_id     = aws_vpc.my_vpc.id
+  cidr_block = "192.168.1.0/32"  # Replace with your desired public subnet CIDR block
+  availability_zone = "us-east-1a"  # Replace with your desired availability zone in the region
+  tags = {
+    Name = "PublicSubnet"
+  }
+}
+
+<h3>Extra</h3>
+Running configuration commands in terraform:
+
+provider "aws" {
+  region = "us-east-1"
+}
+
+resource "aws_instance" "web_server" {
+  ami           = "ami-0c55b159cbfafe1f0"
+  instance_type = "t2.micro"
+  # other instance configurations...
+
+  provisioner "remote-exec" {
+    inline = [
+      "sudo apt-get update",
+      "sudo apt-get install -y apache2",
+    ]
+  }
+
+  provisioner "file" {
+    source      = "path/to/your/application"
+    destination = "/var/www/html/"
+  }
+
+  connection {
+    type        = "ssh"
+    user        = "ubuntu" # Replace with your instance user
+    private_key = file("~/.ssh/your-private-key.pem")
+  }
+}
 </pre>
 
+Terraform files:
+To be continue...
 
