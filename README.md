@@ -213,7 +213,8 @@ $ terraform destroy
 1. Will delete everything which is showing in '-'
 2. By default terraform will destroy everything which is created by it.
 3. If we want to delete only some resource we need to send some parameters.
-
+4. <b>To destroy specific target: </b> $ terraform destroy -target aws_instance.demo-instance
+above example will delete particular resource. 
 Another way to delete a specific resource is to remove the code from your terraform file and apply will remove that resource.
 
 
