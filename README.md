@@ -218,6 +218,47 @@ above example will delete particular resource.
 Another way to delete a specific resource is to remove the code from your terraform file and apply will remove that resource.
 
 
+<h3>Terraform Files</h3>
+1) .terraform file: Whenever we do terraform init it creates .terraform file, which has all the necessary plugins. So it has automatically checks for pluging and install it.
+2) terraform.tfstate: it is a json file which stores the json value of state of our infrastructure.
+Example: using aws provider we've created first-vpc, so along with vpc name it'll store all other info in this file as a key value.
+3) Deleting this file is dangerous, we'll break everything and won't get the current state of our infra.
+
+
+<h3>Terraform Output</h3>
+It is used to print something. 
+Example: 
+output "server_ip_demo" {
+	value = aws_eip.one.public_ip
+}
+
+above example will print the public ip of the resource after resources got created.
+
+we can also check the output using 
+$ terraform output
+
+<h3>Terraform variable</h3>
+
+1. Method 1st
+
+Example:
+variable "availability_zone" {
+  description = "The availability zone where the resource will be provisioned."
+  type        = string
+  default     = "ap-south-1a"
+}
+
+all 3 are optional, if we dont give any default value terraform will ask for that value when we apply
+
+resource "aws_instance" "example" {
+  ami           = "ami-0c55b159cbfafe1f0"
+  instance_type = "t2.micro"
+  availability_zone = var.availability_zone
+}
+
+For example, to use a different availability zone, you could run:
+$ terraform apply -var "availability_zone=us-west-1b"
+
 <h3>Extra</h3>
 1. If we want to auto approve instead to typing yes again and again just use below cmd:
 $ terraform apply --auto-approve
@@ -225,6 +266,29 @@ $ terraform apply --auto-approve
 2. If we've written subnet resource first and then vpc resource, terraform is smart enough to create vpc first then subnet.
 Another example is if created custom-ami first and then launch ec2, terraform will launch ec2 first then create ami.
 
+$ terrform
+will give all the commands, just like we get in python using help
+
+$ terraform state list 
+will list all the resource got created.
+
+$ terraform state show copy_the above_state
+will give the details info of the state we've applied.
+
+2. Method 2nd, real time.
+We'll be creating a seperate file called, <b>terraform.tfvars</b>
+Step 1: create file named, terraform.tfvars
+Step 2: define variable
+availability_zone = "ap-south-1a"
+Step 3: use it in terraform file, use just like we use in above example.
+
+3. Method 3rd: we can use environment variable to store secret file or variables.
+
+<b>Likewise variables, we can give list, objects just like other programming langs.</b>
+
+
+To apply specific resource use 'target' attribute:
+$ terraform apply -target aws_instance.demo-server
 
 <h3>PROJECT:</h3>
 Create a custom VPC using terraform: 
