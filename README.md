@@ -259,13 +259,6 @@ resource "aws_instance" "example" {
 For example, to use a different availability zone, you could run:
 $ terraform apply -var "availability_zone=us-west-1b"
 
-<h3>Extra</h3>
-1. If we want to auto approve instead to typing yes again and again just use below cmd:
-$ terraform apply --auto-approve
-
-2. If we've written subnet resource first and then vpc resource, terraform is smart enough to create vpc first then subnet.
-Another example is if created custom-ami first and then launch ec2, terraform will launch ec2 first then create ami.
-
 $ terrform
 will give all the commands, just like we get in python using help
 
@@ -347,8 +340,10 @@ resource "aws_instance" "web_server" {
     private_key = file("~/.ssh/your-private-key.pem")
   }
 }
+
+1. If we want to auto approve instead to typing yes again and again just use below cmd:
+$ terraform apply --auto-approve
+
+2. If we've written subnet resource first and then vpc resource, terraform is smart enough to create vpc first then subnet.
+Another example is if created custom-ami first and then launch ec2, terraform will launch ec2 first then create ami.
 </pre>
-
-Terraform files:
-To be continue...
-
