@@ -354,3 +354,44 @@ $ terraform apply --auto-approve
 2. If we've written subnet resource first and then vpc resource, terraform is smart enough to create vpc first then subnet.
 Another example is if created custom-ami first and then launch ec2, terraform will launch ec2 first then create ami.
 </pre>
+
+<h1>Interview Questions</h1>
+What is Terraform, and how does it differ from other configuration management tools?
+
+How do you initialize a new Terraform configuration in a directory?
+
+What is the purpose of the Terraform state file, and how is it managed?
+
+Explain the concept of "providers" in Terraform and provide an example of how to use one.
+
+What are Terraform resources, and how do you define them in a Terraform configuration?
+
+How do you use variables in Terraform, and why are they useful?
+
+What is the significance of Terraform "output" variables, and how do you use them?
+
+Describe the differences between Terraform "locals" and "variables."
+
+How do you use Terraform modules to organize and reuse code?
+
+What are data sources in Terraform, and how are they used?
+
+Explain how Terraform handles the lifecycle of resources during updates and deletions.
+
+How do you manage sensitive information, such as API keys or passwords, in Terraform?
+
+What is the purpose of the "terraform plan" command, and how does it help in the infrastructure deployment process?
+
+How can you manage Terraform remote state, and why is it important in a collaborative environment?
+
+How does Terraform handle dependencies between resources?
+
+Describe the concept of "provisioners" in Terraform and when they are used.
+
+What is the Terraform "count" parameter, and how do you use it?
+
+How do you manage multiple environments (e.g., development, staging, production) using Terraform?
+
+Can you explain the "terraform import" command and when it is used?
+
+Describe best practices for writing maintainable and reusable Terraform code.
