@@ -239,6 +239,13 @@ $ terraform output
 
 <h3>Terraform variable</h3>
 
+<b>Global Variable</b>
+We can use global varibale to store our access and secret key of aws.
+<pre>
+export TF_VAR_aws_access_key="your_access_key"
+export TF_VAR_aws_secret_key="your_secret_key"
+</pre>
+
 1. Method 1st
 
 Example:
