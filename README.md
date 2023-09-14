@@ -34,13 +34,12 @@ In above example instead of giving access and secret keys in the terraform file 
 
 
 # Extra Points:
+
 1. Terraform's different files(.tf, tfvars, tfstate).
 2. Terraform Output
 3. Terraform Commands
 
 
-=================================================================================================================================
+======================================================================================
 # Terraform Learning:
-If we've written subnet resource first and then vpc resource, terraform is smart enough to create vpc first then subnet.
-
-
+1. If we've written subnet resource first and then vpc resource, terraform is smart enough to create vpc first then subnet.
